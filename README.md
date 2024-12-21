@@ -1,17 +1,30 @@
-Web khóa học võ thuật
+# Hướng dẫn Setup Dự án Web Khóa Học Võ Thuật
 Các bước set up
-1 : Clone dự án về
-2 : Vào Backend -> SellCourse -> SellCourser.sln double click để mở 
-3 : Mở tool -> nuget -> package manager  Set up csdl bằng lệnh sau :
-Update-Database -Context SellCourse để khởi tạo db từ code vào sql server
-Trường hợp báo lỗi thì vào appsetting.js và sellcoursecontext trong models đổi tên server, tài khoản mk sa đúng với máy
-Sau đó chạy lại lệnh trên
-Trường hợp tạo hoặc sửa bảng trong csdl cần uodate lại models
-Chạy lệnh
+## Clone dự án về máy
+
+Vào thư mục Backend -> SellCourse -> Double click vào SellCourse.sln để mở dự án
+
+Mở Tool:
+
+1.Chọn NuGet -> Package Manager Console
+2.Setup cơ sở dữ liệu (CSDL) bằng lệnh sau:
+3.Update-Database -Context SellCourse
+4.Lệnh này dùng để khởi tạo cơ sở dữ liệu từ code vào SQL Server.
+
+## Nếu báo lỗi:
+1.Vào file appsettings.json và SellCourseContext trong thư mục Models.
+2.Đổi tên server, tài khoản, và mật khẩu (sa) đúng với máy bạn.
+3.Sau đó chạy lại lệnh trên.
+## Nếu cần tạo hoặc sửa bảng trong CSDL và cập nhật lại Models:
+Chạy lệnh sau:
 Scaffold-DbContext "Server=localhost;Database=OnlyFilm;User=Sa;Password=sa;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables est1
-Nhớ đổi tên và mk cho phù hợp máy
+Lưu ý: Đổi server, user, và password phù hợp với máy của bạn.
+Hướng dẫn thêm dữ liệu vào Database
 
-Insert db theo thứ tự
-Bảng Courser -> Lesson để thêm khóa học mới hoặc tạo tài khoản vào user_role nhập username vừa tạo, nhập role_id 2 login vào trang /admin/login để thực hiện trên giao diện
-
-Project Final Course
+## Thêm dữ liệu theo thứ tự:
+Bảng Courser -> Lesson: Để thêm khóa học mới.
+Tạo tài khoản trong bảng User_Role:
+Nhập username vừa tạo.
+Nhập role_id = 2.
+Đăng nhập với tài khoản mới tại: /admin/login 
+Để thực hiện các thao tác trên giao diện.
