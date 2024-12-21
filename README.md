@@ -6,10 +6,10 @@ Vào thư mục Backend -> SellCourse -> Double click vào SellCourse.sln để 
 
 Mở Tool:
 
-1.Chọn NuGet -> Package Manager Console
-2.Setup cơ sở dữ liệu (CSDL) bằng lệnh sau:
-3.Update-Database -Context SellCourse
-4.Lệnh này dùng để khởi tạo cơ sở dữ liệu từ code vào SQL Server.
+1. Chọn NuGet -> Package Manager Console
+2. Setup cơ sở dữ liệu (CSDL) bằng lệnh sau:
+3. Update-Database -Context SellCourse
+4. Lệnh này dùng để khởi tạo cơ sở dữ liệu từ code vào SQL Server.
 
 ## Nếu báo lỗi:
 1.Vào file appsettings.json và SellCourseContext trong thư mục Models.
