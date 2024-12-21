@@ -12,9 +12,9 @@ Mở Tool:
 4. Lệnh này dùng để khởi tạo cơ sở dữ liệu từ code vào SQL Server.
 
 ## Nếu báo lỗi:
-1.Vào file appsettings.json và SellCourseContext trong thư mục Models.
-2.Đổi tên server, tài khoản, và mật khẩu (sa) đúng với máy bạn.
-3.Sau đó chạy lại lệnh trên.
+1. Vào file appsettings.json và SellCourseContext trong thư mục Models.
+2. Đổi tên server, tài khoản, và mật khẩu (sa) đúng với máy bạn.
+3. Sau đó chạy lại lệnh trên.
 ## Nếu cần tạo hoặc sửa bảng trong CSDL và cập nhật lại Models:
 Chạy lệnh sau:
 Scaffold-DbContext "Server=localhost;Database=OnlyFilm;User=Sa;Password=sa;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables est1
