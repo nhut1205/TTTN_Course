@@ -20,9 +20,9 @@ Chạy lệnh sau:
 1. Scaffold-DbContext "Server=localhost;Database=OnlyFilm;User=Sa;Password=sa;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables est1
 2. Lưu ý: Đổi server, user, và password phù hợp với máy của bạn.
 ## Thêm dữ liệu theo thứ tự:
-Bảng Courser -> Lesson: Để thêm khóa học mới.
-Tạo tài khoản trong bảng User_Role:
-Nhập username vừa tạo.
-Nhập role_id = 2.
-Đăng nhập với tài khoản mới tại: /admin/login 
+1. Bảng Courser -> Lesson: Để thêm khóa học mới.
+2. Tạo tài khoản trong bảng User_Role:
+- Nhập username vừa tạo.
+- Nhập role_id = 2.
+3. Đăng nhập với tài khoản mới tại: /admin/login 
 Để thực hiện các thao tác trên giao diện.
