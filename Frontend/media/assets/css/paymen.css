@@ -1,0 +1,90 @@
+.payment-status-card {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.payment-status-card:hover {
+  transform: translateY(-5px);
+}
+
+.status-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-icon.success i {
+  color: #28a745;
+}
+
+.status-icon.failed i {
+  color: #dc3545;
+}
+
+.transaction-details,
+.error-details {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.btn-success,
+.btn-danger {
+  padding: 12px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.alert-danger {
+  background-color: #fff1f1;
+  border-color: #ffd7d7;
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .payment-status-card {
+    margin-bottom: 2rem;
+  }
+
+  .status-icon {
+    font-size: 4rem;
+  }
+
+  .card-body {
+    padding: 2rem !important;
+  }
+}
+
+.card-title {
+  font-weight: 700;
+  color: #333;
+}
+
+.card-text {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.transaction-details .row,
+.error-details .row {
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.transaction-details .row:last-child,
+.error-details .row:last-child {
+  border-bottom: none;
+}

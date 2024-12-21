@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../assets/img/dn5sao2.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="/Frontend/media/assets/css/5sa0.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
+
+    <title>langsch5sao</title>
+
+    <style>
+         .container_gt {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+        }
+   .card_gt {
+    display: flex;
+            flex: 1 1 45%;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 45%;
+        }
+        .card_gt img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .card-content_gt {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-content_gt h2 {
+            margin: 0 0 10px 0;
+        }
+        .card-content_gt p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <a href="https://dn5sao.edu.vn"> <img src="../assets/img/dn5sao2.png" alt="" class="logo"
+                style=" width: 100px; height: auto; "></a>
+
+        <nav class="nav container">
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/Frontend/pages/test.html" class="nav__link active-link">Trang chủ</a>
+                    </li>
+                    <!--giới thiệu-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#GT" class="nav__link">Giới thiệu</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="#GTCT" class="nav__submenu-link">Về công ty dn5sao</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#GTTT" class="nav__submenu-link">Về trung tâm Star</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#DNCT" class="nav__submenu-link">Đội ngũ nhân viên</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--khóa học-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#about" class="nav__link">Khóa học</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/viduIELTS.html" class="nav__submenu-link">IELTS</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/viduPTE.html" class="nav__submenu-link">PTE</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--ngôn ngữ-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#discover" class="nav__link">Ngôn ngữ</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/tienganh.html" class="nav__submenu-link">Tiếng Anh</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#german" class="nav__submenu-link">Tiếng Đức</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#korean" class="nav__submenu-link">Tiếng Hàn</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#german" class="nav__submenu-link">Tiếng Nhật</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#korean" class="nav__submenu-link">Tiếng Trung Quốc</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--tin tức-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#tintuc" class="nav__link">Tin tức</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../news/tinnoibat.html" class="nav__submenu-link">Tin nổi bật</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#english" class="nav__submenu-link">Sự kiện</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--thư viện-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#place" class="nav__link">Thư viện</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../index.html#place" class="nav__submenu-link">Hình ảnh</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../index.html#video" class="nav__submenu-link">Video</a>
+                            </li>
+
+                            <li class="nav__submenu-item">
+                                <a href="#tltk" class="nav__submenu-link">Tài liệu tham khảo</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#LH" class="nav__link">Liên hệ</a>
+                    </li>
+
+                </ul>
+
+                <div class="nav__dark">
+                    <!-- Theme change button -->
+                    <span class="change-theme-name">Dark mode</span>
+                    <i class="ri-moon-line change-theme" id="theme-button"></i>
+                </div>
+
+                <i class="ri-close-line nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+        </nav>
+    </header>
+   
+    <section class="tltk section" id="tltk">
+        <div class="container">
+            <h2 class="section__title">ĐỘI NGŨ DEV CHO WEB</h2>
+    </section>
+
+
+<div class="container_gt " style="margin-left: 150px;">
+    <div class="card_gt">
+        <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/455254172_1042687774135490_2987877998982300921_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZzmFd3lV2dEQ7kNvgGswZnA&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AP9hOCQs_ggKPyyAZb-DJoU&oh=00_AYDUfQat5VSrp7ThPJvy2ogrexV3PHc7Lv8yUhzTbh_mbg&oe=673AB80B" alt="Teacher 1" width="100" height="100">
+        <div class="card-content_gt">
+            <h2>PHAM MINH NHUT</h2>
+            <p>JOB: FULL STACK</p>
+            <p>Email: nhuta4@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="card_gt">
+        <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/455254172_1042687774135490_2987877998982300921_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZzmFd3lV2dEQ7kNvgGswZnA&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AP9hOCQs_ggKPyyAZb-DJoU&oh=00_AYDUfQat5VSrp7ThPJvy2ogrexV3PHc7Lv8yUhzTbh_mbg&oe=673AB80B" alt="Teacher 2" width="100" height="100">
+        <div class="card-content_gt">
+            <h2>PHAM MINH NHUT</h2>
+            <p>JOB: FULL STACK</p>
+            <p>Email: nhuta4@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="card_gt">
+        <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/455254172_1042687774135490_2987877998982300921_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZzmFd3lV2dEQ7kNvgGswZnA&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AP9hOCQs_ggKPyyAZb-DJoU&oh=00_AYDUfQat5VSrp7ThPJvy2ogrexV3PHc7Lv8yUhzTbh_mbg&oe=673AB80B" alt="Teacher 3" width="100" height="100">
+        <div class="card-content_gt">
+            <h2>PHAM MINH NHUT</h2>
+            <p>JOB: FULL STACK</p>
+            <p>Email: nhuta4@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="card_gt">
+        <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/455254172_1042687774135490_2987877998982300921_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZzmFd3lV2dEQ7kNvgGswZnA&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AP9hOCQs_ggKPyyAZb-DJoU&oh=00_AYDUfQat5VSrp7ThPJvy2ogrexV3PHc7Lv8yUhzTbh_mbg&oe=673AB80B" alt="Teacher 4" width="100" height="100">
+        <div class="card-content_gt">
+            <h2>PHAM MINH NHUT</h2>
+            <p>JOB: FULL STACK</p>
+            <p>Email: nhuta4@gmail.com</p>
+        </div>
+    </div>
+
+</div>
+
+    </main>
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content grid">
+                <div class="footer__data">
+                    <h3 class="footer__title">Trung tâm anh ngữ Star</h3>
+                    <p class="footer__description">Hostline: 0938 762 783<br> Email: info@dn5sao.edu.vn<br>
+                    </p>
+                    <div>
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Địa chỉ của chúng tôi</h3>
+                    <p>85 Nguyễn Văn Nghi, Phường 7, Quận Gò Vấp, TP.HCM</p>
+                    <div class="map-responsive">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3815125782735!2d106.6787431!3d10.8260782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528fc64e522fb%3A0xdc415619b7791a50!2zODUgTmd1eeG7hW4gVsSDbiBOZ2hpLCBQaMaw4budbmcgNywgR8O0IFbhuq1wLCBUaMOgbmggcGjhuqduIFRQLiBIw7JhIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1620312725826!5m2!1svi!2s"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__rights">
+                <p class="footer__copy">&#169; 2021 Bedimcode. All rights reserved.</p>
+                <div class="footer__terms">
+                    <a href="#" class="footer__terms-link">Terms & Agreements</a>
+                    <a href="#" class="footer__terms-link">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line scrollup__icon"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL===============-->
+    <script src="../assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="../assets/js/main.js"></script>
+
+
+
+
+    <!--icon message-->
+    <div class="message-container">
+
+        <a  onclick="showPhoneNumber()">
+            <img class="phone-img" src="/Frontend/media/assets/img/logos/phone.png" alt="Hình ảnh điện thoại">
+        </a>
+        <p id="phone-number" style="display: none;">Số điện thoại: 0908926760</p>
+        
+        <br>
+        <a href="https://zalo.me/090.892.6760">
+            <img class="zalo-img" src="/Frontend/media/assets/img/logos/zalo.png" alt="Hình ảnh zalo">
+        </a>
+        <br>
+        <a href="https://www.facebook.com/messages/t/6797722053650209">
+            <img class="message-img" src="/Frontend/media/assets/img/logos/message.png" alt="Hình ảnh tin nhắn">
+        </a>
+    </div>
+    <!--icon điện thoại-->
+    <script>
+        function showPhoneNumber() {
+            var phoneNumber = document.getElementById("phone-number");
+            if (phoneNumber.style.display === "none") {
+                phoneNumber.style.display = "block";
+            } else {
+                phoneNumber.style.display = "none";
+            }
+        }
+    </script>
+    <!-- messager vs facebook-->
+    <script>
+        window.addEventListener('scroll', function () {
+            var messageContainer = document.querySelector('.message-container');
+            var scrollPos = window.scrollY;
+
+            if (scrollPos > 100) { // Thay đổi giá trị 100 thành vị trí cuộn mong muốn
+                messageContainer.classList.add('show');
+            } else {
+                messageContainer.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

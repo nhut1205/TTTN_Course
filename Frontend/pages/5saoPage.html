@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="assets/img/dn5sao2.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="/Frontend/media/assets/css/swiper-bundle.min.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Frontend/media/assets/js/5sao.js"></script>
+    <!--=============== CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="/Frontend/media/assets/css/5sa0.css"
+    />
+    <title>langsch5sao</title>
+  </head>
+
+  <body>
+    <header class="header" id="header">
+      <a href="https://dn5sao.edu.vn">
+        <img
+          src="assets/img/logotrungtamstar.png"
+          alt=""
+          class="logo"
+          style="width: 100px; height: auto"
+      /></a>
+      <nav class="nav container">
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link active-link">Trang chủ</a>
+            </li>
+            <!--giới thiệu-->
+            <li class="nav__item nav__item--dropdown">
+              <a href="#GT" class="nav__link">Giới thiệu</a>
+              <ul class="nav__submenu">
+                <li class="nav__submenu-item">
+                  <a
+                    href="/Frontend/pages/introduct.html"
+                    class="nav__submenu-link"
+                    >Về trung tâm Star</a
+                  >
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="dev.html" class="nav__submenu-link"
+                    >Đội ngũ nhân viên</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <!--khóa học-->
+            <li class="nav__item nav__item--dropdown">
+              <a href="#about" class="nav__link">Khóa học</a>
+              <ul class="nav__submenu">
+                <li id="dropdown-content-genres" class="nav__submenu-link"></li>
+              </ul>
+            </li>
+
+            <!--ngôn ngữ-->
+            <li class="nav__item nav__item--dropdown">
+              <a href="#discover" class="nav__link">Ngôn ngữ</a>
+              <ul class="nav__submenu">
+                <li class="nav__submenu-item">
+                  <a href="noidung/tienganh.html" class="nav__submenu-link"
+                    >Tiếng Anh</a
+                  >
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="TiengDuc.html" class="nav__submenu-link"
+                    >Tiếng Đức</a
+                  >
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="#korean" class="nav__submenu-link">Tiếng Hàn</a>
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="TiengNhat.html" class="nav__submenu-link"
+                    >Tiếng Nhật</a
+                  >
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="#korean" class="nav__submenu-link"
+                    >Tiếng Trung Quốc</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!--tin tức-->
+            <li class="nav__item nav__item--dropdown">
+              <a href="#tintuc" class="nav__link">Tin tức</a>
+              <ul class="nav__submenu">
+                <li class="nav__submenu-item">
+                  <a href="news/tinnoibat.html" class="nav__submenu-link"
+                    >Tin nổi bật</a
+                  >
+                </li>
+                <li class="nav__submenu-item">
+                  <a href="#english" class="nav__submenu-link">Sự kiện</a>
+                </li>
+              </ul>
+            </li>
+            <!--thư viện-->
+            <li class="nav__item nav__item--dropdown">
+              <a href="https://www.futurelang.edu.vn/" class="nav__link">App Phát Âm</a>
+<!--              <ul class="nav__submenu">-->
+<!--                <li class="nav__submenu-item">-->
+<!--                  <a href="#place" class="nav__submenu-link">Hình ảnh</a>-->
+<!--                </li>-->
+<!--                <li class="nav__submenu-item">-->
+<!--                  <a href="#video" class="nav__submenu-link">Video</a>-->
+<!--                </li>-->
+
+<!--                <li class="nav__submenu-item">-->
+<!--                  <a-->
+<!--                    href="thuvien/tailieuthamkhao.html"-->
+<!--                    class="nav__submenu-link"-->
+<!--                    >Tài liệu tham khảo</a-->
+<!--                  >-->
+<!--                </li>-->
+<!--              </ul>-->
+            </li>
+            <li class="nav__item">
+              <a href="#LH" class="nav__link">Liên hệ</a>
+            </li>
+          </ul>
+
+          <div class="nav__dark">
+            <!-- Theme change button -->
+            <span class="change-theme-name">Dark mode</span>
+            <i class="ri-moon-line change-theme" id="theme-button"></i>
+          </div>
+
+          <i class="ri-close-line nav__close" id="nav-close"></i>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-function-line"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <!--==================== HOME ====================-->
+      <section class="home" id="home">
+        <div class="carousel">
+          <img
+            src="/Frontend/media/assets/img/home-decor-1.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/Frontend/media/assets/img/home-decor-2.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/Frontend/media/assets/img/home-decor-3.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/Frontend/media/assets/img/home-decor-1.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/Frontend/media/assets/img/ivancik.jpg"
+            alt=""
+            class="home__img"
+          />
+          <!-- Duplicate images for seamless looping -->
+          <img
+            src="/TTTN_Course/assests/img/family_friend_Baner.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/TTTN_Course/assests/img/family_friend_Baner.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/TTTN_Course/assests/img/family_friend_Baner.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/TTTN_Course/assests/img/family_friend_Baner.jpg"
+            alt=""
+            class="home__img"
+          />
+          <img
+            src="/TTTN_Course/assests/img/family_friend_Baner.jpg"
+            alt=""
+            class="home__img"
+          />
+        </div>
+      </section>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          let currentIndex = 0;
+          const images = document.querySelectorAll(".home__img");
+          const totalImages = images.length / 2;
+          const carousel = document.querySelector(".carousel");
+
+          function showNextImage() {
+            currentIndex++;
+            const newTransform = `translateX(-${currentIndex * 100}%)`;
+            carousel.style.transform = newTransform;
+
+            if (currentIndex === totalImages) {
+              setTimeout(() => {
+                carousel.style.transition = "none";
+                currentIndex = 0;
+                carousel.style.transform = `translateX(0)`;
+                setTimeout(() => {
+                  carousel.style.transition = "transform 1s ease";
+                }, 50);
+              }, 1000);
+            }
+          }
+
+          setInterval(showNextImage, 5000); // Change image every 5 seconds
+        });
+      </script>
+
+      <!--==================== Giới thiệu================-->
+      <section class="GT section" id="GT">
+        <div class="container">
+          <h2 class="section__title">Trung tâm anh ngữ Star xin chào bạn.</h2>
+          <div class="intro-content">
+            <img
+              src="/Frontend/media/assets/img/taytrai.png"
+              alt="Bàn tay bên trái"
+              class="hand left-hand"
+            />
+            <img
+              class="intro-image"
+              src="/Frontend/media/assets/img/avatar.jpg"
+              alt="Giới Thiệu Image"
+              onclick="openModal(this)"
+            />
+
+            <img
+              src="/Frontend/media/assets/img/tayphai.png"
+              alt="Bàn tay bên phải"
+              class="hand right-hand"
+            />
+
+            <div id="myModal" class="modal">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <img class="modal-content" id="img01" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--==================== ABOUT ====================-->
+      <section class="about section" id="about">
+        <div class="about__container container grid">
+          <div class="about__data">
+            <h2 class="section__title about__title">
+              Khóa học Family and friend <br />
+              bậc tiểu học
+            </h2>
+            <p class="about__description">
+              Trung Tâm Anh Ngữ STAR, nơi bạn có thể chuẩn bị cho các kỳ thi
+              quan trọng như IELTS và PTE với sự hướng dẫn chuyên nghiệp và tài
+              nguyên học tập hàng đầu. Với đội ngũ giáo viên giàu kinh nghiệm và
+              phương pháp giảng dạy hiệu quả, chúng tôi cam kết mang đến cho bạn
+              môi trường học tập lý tưởng nhất.
+            </p>
+            <a href="/Frontend/pages/Register.html" class="button"
+              >Đăng ký khóa học ngay</a
+            >
+          </div>
+
+          <div class="about__img">
+            <div class="about__img-overlay">
+              <img
+                src="/Frontend/media/assets/img/family_and_friend/full_faf.jpg"
+                alt=""
+                class="about__img-one"
+              />
+            </div>
+
+            <div class="about__img-overlay">
+              <img
+                src="/Frontend/media/assets/img/family_and_friend/maxresdefault.jpg"
+                alt=""
+                class="about__img-two"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== DISCOVER ====================-->
+
+      <!--==================== EXPERIENCE ====================-->
+      <section class="experience section" id="tintuc">
+        <h2 class="section__title">
+          With Our Experience <br />
+          We Will Serve You
+        </h2>
+
+        <div class="experience__container container grid">
+          <div class="experience__content grid">
+            <div class="experience__data">
+              <h2 class="experience__number">20</h2>
+              <span class="experience__description"
+                >Year <br />
+                Experience</span
+              >
+            </div>
+
+            <div class="experience__data">
+              <h2 class="experience__number">75</h2>
+              <span class="experience__description"
+                >Complete <br />
+                tours</span
+              >
+            </div>
+
+            <div class="experience__data">
+              <h2 class="experience__number">650+</h2>
+              <span class="experience__description"
+                >Tourist <br />
+                Destination</span
+              >
+            </div>
+          </div>
+
+          <div class="experience__img grid">
+            <div class="experience__overlay">
+              <img
+                src="/Frontend/media/assets/img/bruce-mars.jpg"
+                alt=""
+                class="experience__img-one"
+              />
+            </div>
+
+            <div class="experience__overlay">
+              <img
+                src="/Frontend/media/assets/img/marie.jpg"
+                alt=""
+                class="experience__img-two"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== STUDENTS ====================-->
+      <section class="place section" id="place">
+        <h2 class="section__title">Khoá học của chúng tôi</h2>
+
+        <div class="place__container container grid" id="film-list">
+          <!-- Load danh sách các khóa học -->
+        </div>
+      </section>
+
+      <!--==================== VIDEO ====================-->
+      <section class="video section" id="video">
+        <h2 class="section__title">
+          Video Buổi Học Tiếng Anh cho Học Viên Tiểu Học
+        </h2>
+
+        <div class="video__container container">
+          <p class="video__description"></p>
+          <p>
+            Video ghi lại buổi học tiếng Anh của học viên tiểu học tại trung
+            tâm. Các em tham gia các hoạt động học tập sôi động nhằm cải thiện
+            kỹ năng nghe, nói, đọc và viết, đồng thời mở rộng vốn từ vựng và
+            khuyến khích sự tự tin trong giao tiếp tiếng Anh.
+          </p>
+
+          <div class="video__content">
+            <video id="video-file">
+              <source
+                src="/Frontend/media/assets/img/team-4.jpg"
+                type="video/mp4"
+              />
+            </video>
+
+            <button class="button button--flex video__button" id="video-button">
+              <i class="ri-play-line video__button-icon" id="video-icon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== SUBSCRIBE ====================-->
+    </main>
+
+    <footer class="footer section" id="LH">
+      <div class="footer__container container grid">
+        <div class="footer__content grid">
+          <div class="footer__data">
+            <h3 class="footer__title">Cung cấp khóa học</h3>
+            <p class="footer__description">
+              Hostline: 0908926760<br />
+              Email: nhuta4@@gmail.com<br />
+              Facebook : <a href="https://www.facebook.com/profile.php?id=61561938402003">Trung Tâm Anh Ngữ Star  </a>
+            </p>
+            <div>
+              <a
+                href="https://www.facebook.com/profile.php?id=61561938402003"
+                target="_blank"
+                class="footer__social"
+              >
+                <i class="ri-facebook-box-fill"></i>
+              </a>
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                class="footer__social"
+              >
+                <i class="ri-twitter-fill"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                class="footer__social"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                class="footer__social"
+              >
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer__data">
+            <h3 class="footer__subtitle">Địa chỉ của chúng tôi</h3>
+            <p>
+              140 Lê Trọng Tấn, phường Tây Thạnh, Quận Tân Phú, Thành Phố Hồ Chí
+              Minh
+            </p>
+            <div class="map-responsive">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0625276151345!2d106.6263749748054!3d10.806523089344074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be2853ce7cd%3A0x4111b3b3c2aca14a!2zMTQwIMSQLiBMw6ogVHLhu41uZyBU4bqlbiwgVMOieSBUaOG6oW5oLCBUw6JuIFBow7osIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1731501401147!5m2!1svi!2s"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__rights">
+          <p class="footer__copy">
+            &copy; 2024 Công Ty TNHH TM - DV Đệ Nhất 5 Sao
+          </p>
+          <div class="footer__terms">
+            <a href="#" class="footer__terms-link">Terms & Agreements</a>
+            <a href="#" class="footer__terms-link">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class="ri-arrow-up-line scrollup__icon"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL===============-->
+    <script src="/Frontend/media/assets/js/scrollreveal.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="/Frontend/media/assets/js/main.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="/Frontend/media/assets/js/swiper.js"></script>
+
+    <!--icon message-->
+
+    <div class="message-container">
+      <a onclick="showPhoneNumber()">
+        <img
+          class="phone-img"
+          src="/Frontend/media/assets/img/logos/phone.png"
+          alt="Hình ảnh điện thoại"
+        />
+      </a>
+      <p id="phone-number" style="display: none">Số điện thoại: 0908926760</p>
+
+      <br />
+      <a href="https://zalo.me/090.892.6760">
+        <img
+          class="zalo-img"
+          src="/Frontend/media/assets/img/logos/zalo.png"
+          alt="Hình ảnh zalo"
+        />
+      </a>
+      <br />
+      <a href="https://www.facebook.com/messages/t/6797722053650209">
+        <img
+          class="message-img"
+          src="/Frontend/media/assets/img/logos/message.png"
+          alt="Hình
+        ảnh tin nhắn"
+        />
+      </a>
+    </div>
+    <!--icon điện thoại-->
+    <script>
+      function showPhoneNumber() {
+        var phoneNumber = document.getElementById("phone-number");
+        if (phoneNumber.style.display === "none") {
+          phoneNumber.style.display = "block";
+        } else {
+          phoneNumber.style.display = "none";
+        }
+      }
+    </script>
+    <!-- messager vs facebook-->
+    <script>
+      window.addEventListener("scroll", function () {
+        var messageContainer = document.querySelector(".message-container");
+        var scrollPos = window.scrollY;
+
+        if (scrollPos > 100) {
+          // Thay đổi giá trị 100 thành vị trí cuộn mong muốn
+          messageContainer.classList.add("show");
+        } else {
+          messageContainer.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+  <script src="/Frontend/pages/home_page.html"></script>
+</html>

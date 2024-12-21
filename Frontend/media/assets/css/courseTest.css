@@ -1,0 +1,106 @@
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.exam-cards .card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #e9ecef;
+}
+
+.exam-cards .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.question-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-check {
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.form-check:hover {
+  background-color: #e9ecef;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-1px);
+}
+
+.badge {
+  padding: 6px 12px;
+  font-weight: 500;
+}
+
+.progress {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.result-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.timer {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.navigation-buttons {
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .exam-info .col-md-4 {
+    margin-bottom: 15px;
+  }
+}

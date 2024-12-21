@@ -1,0 +1,234 @@
+Navbar logo .nav-logo img {
+  width: 75px;
+}
+
+/* Navbar content */
+.nav-content {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Search form */
+.search-form {
+  padding: 0px;
+}
+
+#search-form {
+  padding: 0px 0px;
+}
+
+#search-form > div {
+  width: 100%;
+  display: flex;
+}
+
+#search-form > div input#search-input {
+  width: 85%;
+  margin: 0 1%;
+}
+#search-form > div input#search-button {
+  width: 10%;
+}
+
+/* Style cho phần Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style cho phần Heading */
+.header {
+  background-color: #333; /* Màu nền của heading */
+  color: white; /* Màu chữ */
+  padding: 20px; /* Khoảng cách xung quanh nội dung */
+  text-align: center; /* Căn giữa nội dung */
+  display: flex;
+  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.header-logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.header-nav {
+  display: flex;
+  gap: 15px; /* Khoảng cách giữa các mục điều hướng */
+}
+
+.header-nav a {
+  color: white; /* Màu chữ */
+  text-decoration: none; /* Bỏ gạch chân */
+  font-weight: bold;
+}
+
+.header-nav a:hover {
+  color: #ff6347; /* Đổi màu chữ khi hover */
+}
+
+.header-nav a:hover {
+  color: #ff6347; /* Màu đỏ nhạt khi hover */
+  transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+header {
+  background-color: #1f2a5d;
+  padding: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 150px;
+}
+
+nav {
+  display: flex;
+  flex-grow: 1;
+
+  gap: 20px; /* Khoảng cách giữa các mục */
+  align-items: center; /* Căn chỉnh theo chiều dọc */
+  padding: 0px 0px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+nav a:hover {
+  background-color: #00a4db;
+  color: #fff;
+}
+nav a#logo:hover {
+  color: #fff;
+}
+
+.info-section {
+  flex: 2;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+.info-section h2 {
+  margin-top: 0;
+}
+
+/* Dropdown Thể loại */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown > a {
+  padding: 12px 10px;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-width: 200px;
+  z-index: 1000;
+  border-radius: 5px;
+  padding: 10px; /* Padding cho dropdown */
+  flex-direction: column; /* Hiển thị theo cột */
+  text-align: left;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 7px 10px;
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #00a4db;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Dropdown Account */
+.dropdown2 {
+  position: relative;
+  margin-left: auto;
+  float: right;
+}
+
+.dropdown2 > a {
+  padding: 12px 10px;
+}
+
+.dropdown2-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-width: 200px;
+  right: 0;
+  z-index: 1000;
+  border-radius: 5px;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.dropdown2-content a {
+  color: white;
+  padding: 7px 10px;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  text-align: right;
+}
+
+.dropdown2-content a:hover {
+  background-color: #00a4db;
+}
+
+.dropdown2:hover .dropdown2-content {
+  display: block;
+}
+
+/* menu-list */
+.menu-list > div.col-4 {
+  padding: 0;
+}
+
+/* menu-list-item */
+.menu-list-item {
+  text-align: center;
+}
+
+.advertisement,
+.view-stats {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.advertisement img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+/* Phân trang */
+#pagination {
+  margin: 20px 10px;
+  text-align: center;
+}

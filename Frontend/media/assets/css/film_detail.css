@@ -1,0 +1,64 @@
+/* Custom Styles for Button Alignment */
+.action-buttons {
+    display: flex;
+    align-items: center; /* Center vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+  }
+
+  .action-buttons button {
+    padding: 10px 15px; /* Button padding for consistent size */
+  }
+
+  /* Style for like and share buttons */
+  .btn-light {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    cursor: pointer;
+  }
+
+  /* genres */
+  #genres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* genres-list */
+  #genres-list {
+    padding-left: 10px;
+  }
+
+  /* genre button */
+  .genre-name {
+    background-color: #1a3a5f;
+    border: none;
+    color: white;
+    padding: 4px 7px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .genre-name:hover {
+    background-color: #2b4f7a;
+  }
+
+  .mt40 {
+    margin-top: 40px !important;
+  }
+
+  /* Add a style for the liked button */
+  #like-button.liked i {
+    color: red;
+  }
+
+  /* Add a style for the liked button */
+  #like-button.liked i {
+    color: red;
+  }

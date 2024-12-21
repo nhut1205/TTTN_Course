@@ -1,0 +1,56 @@
+.hero-section {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.card {
+  transition: transform 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  padding: 0.5em 1em;
+}
+
+.pagination .page-link {
+  color: #007bff;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+  }
+
+  .hero-section img {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,80 @@
+<header>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo">
+      <img src="/Frontend/media/assets/img/logos/filmlogo.png" alt="" />
+    </div>
+
+    <div class="row nav-content">
+      <!-- Menu list -->
+      <div class="col-3">
+        <!-- row -->
+        <div class="row menu-list" style="width: 100%">
+          <div class="col-4 menu-list-item">
+            <a href="/TTTN_Course/Frontend/pages/course_page.html"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </div>
+
+          <div class="col-4 menu-list-item">
+            <div class="dropdown">
+              <a href="#" class="dropbtn">
+                <i class="fas fa-tags"></i>
+                Thể loại
+                <div class="dropdown-content" id="dropdown-content-genres">
+                  <!-- Thể loại phim sẽ được chèn vào đây -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-4 menu-list-item">
+            <a href="/Frontend/pages/film_api.html"
+              ><i class="fas fa-film"></i> API</a
+            >
+          </div>
+        </div>
+        <!-- endrow -->
+      </div>
+
+      <!-- Search bar -->
+      <div class="col-7">
+        <form class="d-flex" id="search-form" role="search">
+          <div>
+            <input
+              type="text"
+              placeholder="Nhập tên phim"
+              style="padding: 5px"
+              class="form-control"
+              id="search-input"
+              role="search"
+            />
+            <input
+              type="submit"
+              value="Search"
+              class="btn btn-success"
+              id="search-button"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- Account -->
+      <div class="col-2">
+        <div class="menu-list-item">
+          <div class="dropdown2">
+            <a href="#" class="dropbtn" id="userInfoLink">
+              <i class="fas fa-user"></i>
+              Tài khoản
+              <div
+                class="dropdown2-content"
+                id="dropdown2-content-genres"
+              ></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<script src="/TTTN_Course/Frontend/media/assets/js/home_page.js"></script>

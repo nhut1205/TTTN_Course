@@ -1,0 +1,70 @@
+.container_UserDetails {
+    background-color: #e0e5f1;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.profile-header h2 {
+    margin: 0;  
+}
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+.profile-info p,
+.form-group {
+    margin-bottom: 10px;
+}
+.profile-info strong {
+    display: inline-block;
+    width: 120px;
+}
+#ratedMoviesList > li {
+    list-style-type: none;
+}
+
+#watchlistMoviesList > li {
+    list-style-type: none;
+}
+
+.btn.active {
+    background-color: #228B22 !important;
+}
+
+.card_film_user {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card_film_user > h6 {
+    margin-top: 7px;
+}
+
+.card_film_user > p {
+    margin-bottom: 10px;
+}
+
+.grid_container_user {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+.User-Detail-Main {
+    width: 95%; 
+    margin: auto;
+}

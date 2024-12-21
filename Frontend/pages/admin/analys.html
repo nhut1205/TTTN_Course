@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Analysis</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/TTTN_Course/Frontend/media/assets/css/analys.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <img src="/Frontend/Frontend/media/assets/img/logos/filmlogo.png" alt="Logo" />
+        <h2>SellCourse Website</h2>
+      </div>
+      <ul class="menu">
+        <li>
+          <a href="#" class="active"
+            ><i class="fas fa-chart-pie"></i> Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="/TTTN_Course/Frontend/pages/admin/admin_crud_Course.html"><i class="fas fa-table"></i> Admin Crud</a>
+        </li>
+        <li>
+          <a href="/TTTN_Course/Frontend/pages/admin/admin_BackUp.html"><i class="fas fa-file-invoice"></i> BackUp</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-user"></i> Profile</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Dashboard</h1>
+        <input type="text" placeholder="Type here..." />
+      </div>
+
+      <div class="statistics">
+        <div class="stat-card">
+          <div class="icon-box">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <p>Today's Money</p>
+          <h3 id="todays-money">₫0<span class="increase"></span></h3>
+        </div>
+        
+        
+        <div class="stat-card">
+          <div class="icon-box">
+            <i class="fas fa-users"></i>
+          </div>
+          <p>Today's Users</p>
+          <h3 id="total-users-count">0 <span class="increase">+0%</span></h3>
+        </div>        
+        
+        <div class="stat-card">
+          <div class="icon-box">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <p>Sales</p>
+          <h3 id="totalPriceDisplay">0<span class="increase"></span></h3>
+        </div>
+
+      </div>
+
+
+      <!-- Chart subcripton -->
+      <div class="charts">
+        <div class="chart">
+          <h4>Course chart</h4>
+          <canvas id="barChart"></canvas>
+        </div>
+        <div class="chart">
+          <h4>Sales Overview</h4>
+        
+          <!-- Bộ lọc theo tháng -->
+          <div style="margin-bottom: 15px;">
+            <label for="monthFilter">Chọn tháng:</label>
+            <select id="monthFilter" style="padding: 5px; margin-right: 15px;">
+              <option value="0">Tất cả</option>
+              <option value="1">Tháng 1</option>
+              <option value="2">Tháng 2</option>
+              <option value="3">Tháng 3</option>
+              <option value="4">Tháng 4</option>
+              <option value="5">Tháng 5</option>
+              <option value="6">Tháng 6</option>
+              <option value="7">Tháng 7</option>
+              <option value="8">Tháng 8</option>
+              <option value="9">Tháng 9</option>
+              <option value="10">Tháng 10</option>
+              <option value="11">Tháng 11</option>
+              <option value="12">Tháng 12</option>
+            </select>
+            <button id="exportExcelBtn" style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">
+              Xuất Excel
+            </button>
+          </div>
+        
+          <!-- Biểu đồ -->
+          <canvas id="lineChart"></canvas>
+        </div>
+        
+      </div>
+
+      <div class="analysis-section">
+        <div class="bill-card">
+          <div class="card-header">
+            <h4>Invoices</h4>
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          <div class="card-content">
+            <p class="text-sm mb-0">
+              <i class="fa fa-file-invoice text-info" aria-hidden="true"></i>
+              <span class="font-weight-bold ms-1">Tổng số hóa đơn:</span>
+              <strong id="total-invoices-count">0</strong>
+              <br>
+            </p>
+          </div>
+        </div>
+        
+        <div class="film-card">
+          <div class="card-header">
+            <h4>Khóa học</h4>
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          <div class="card-content">
+
+            <p class="text-sm mb-0">
+              <i class="fa fa-check text-info" aria-hidden="true"></i>
+              <span class="font-weight-bold ms-1">Tổng số khoá học</span> tháng này:
+              <strong id="total-movies-count">0</strong>
+              <br>
+              <!-- <i class="fa fa-check text-info" aria-hidden="true"></i>
+              <span class="font-weight-bold ms-1">Tổng tiền từ gói vip </span> :
+              <strong id="totalPriceDisplay">0</strong> -->
+            </p>
+            </div>
+            </div>
+        
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    const currentMonth = new Date().getMonth() + 1; 
+    const currentYear = new Date().getFullYear(); 
+
+    // Hàm chuyển đổi định dạng ngày từ "dd/mm/yyyy" sang "yyyy-mm-dd"
+    function convertDate(dateString) {
+      const parts = dateString.split("/");
+      return new Date(parts[2], parts[1] - 1, parts[0]); // Tạo đối tượng Date
+    }
+
+    // Hàm tải danh sách phim và đếm số phim được thêm vào trong tháng hiện tại
+    function loadTotalMoviesByMonth() {
+      $.ajax({
+        url: `https://localhost:7252/api/Home`, // Gọi API để lấy tất cả phim
+        method: "GET",
+        success: function (data) {
+          const totalMoviesCount = data.filter((movie) => {
+            const createdAt = convertDate(movie.created_At); // Sử dụng hàm chuyển đổi
+            return (
+              createdAt.getMonth() + 1 === currentMonth &&
+              createdAt.getFullYear() === currentYear
+            );
+          }).length;
+
+          // Cập nhật tổng số phim trong tháng này lên giao diện
+          $("#total-movies-count").text(`${totalMoviesCount}`);
+        },
+        error: function (error) {
+          console.error("Error fetching movie count:", error);
+          $("#total-movies-count").text("Lỗi khi tải số lượng khóa học");
+        },
+      });
+    }
+
+    // Gọi hàm loadTotalMoviesByMonth khi trang HTML của bạn tải lên
+    loadTotalMoviesByMonth();
+
+    // Hàm lấy dữ liệu từ API và hiển thị lên biểu đồ
+    function loadMovieChart() {
+      $.ajax({
+        url: `https://localhost:7252/api/Home`, // Gọi API để lấy tất cả phim
+        method: "GET",
+        success: function (data) {
+          // Khởi tạo một mảng với 12 phần tử đại diện cho số lượng khóa học trong từng tháng
+          const moviesPerMonth = new Array(12).fill(0);
+
+          // Duyệt qua từng phim và tăng giá trị cho tháng tương ứng
+          data.forEach((movie) => {
+            const createdAt = convertDate(movie.created_At); // Sử dụng hàm chuyển đổi
+            if (createdAt.getFullYear() === currentYear) {
+              const monthIndex = createdAt.getMonth(); // getMonth() trả về giá trị từ 0-11
+              moviesPerMonth[monthIndex]++;
+            }
+          });
+
+          // Tạo biểu đồ sử dụng Chart.js
+          createBarChart(moviesPerMonth);
+        },
+        error: function (error) {
+          console.error("Error fetching movie data:", error);
+        },
+      });
+    }
+
+    // Hàm tạo biểu đồ thanh sử dụng Chart.js
+    function createBarChart(data) {
+      const ctx = document.getElementById("barChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              label: "Số lượng khóa học",
+              data: data,
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "top",
+            },
+          },
+        },
+      });
+    }
+
+    loadMovieChart();
+  });
+
+  // Hàm vẽ biểu đồ đường hiển thị doanh thu theo tháng
+function createLineChart(data) {
+  const ctx = document.getElementById("lineChart").getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ], // Nhãn cho từng tháng
+      datasets: [
+        {
+          label: "Doanh thu (VND)",
+          data: data, // Dữ liệu doanh thu theo tháng
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 2,
+          tension: 0.4, // Tạo độ cong mềm mại cho đường
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return value.toLocaleString("vi-VN") + " VND"; // Hiển thị tiền theo format
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+// Hàm chuyển đổi dữ liệu thành file Excel và tải xuống
+function exportToExcel(subscriptions) {
+  // Chuyển dữ liệu từ API thành mảng JSON
+  const data = subscriptions.map((sub) => ({
+    "ID Đăng ký": sub.subscriptionId,
+    "Tên người dùng": sub.username,
+    "Gói đăng ký": sub.plan,
+    "Giá (VND)": sub.price?.toLocaleString("vi-VN") || 0,
+    "Ngày bắt đầu": sub.startDate,
+    "Ngày kết thúc": sub.endDate,
+    "Trạng thái": sub.status,
+  }));
+
+  // Tạo workbook và worksheet
+  const worksheet = XLSX.utils.json_to_sheet(data); // Tạo worksheet từ dữ liệu JSON
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Thống kê đăng ký");
+}
+
+// Hàm tải dữ liệu từ API và gọi hàm xuất file Excel
+function loadSubscriptionsAndExport() {
+  $.ajax({
+    url: "https://localhost:7252/api/Subscriptions",
+    method: "GET",
+    success: function (subscriptions) {
+      // Gọi hàm xuất dữ liệu ra file Excel
+      exportToExcel(subscriptions);
+    },
+    error: function (xhr, status, error) {
+      console.error("Lỗi khi tải dữ liệu:", error);
+    },
+  });
+}
+
+
+let allSubscriptions = []; // Lưu trữ toàn bộ dữ liệu
+
+// Lọc dữ liệu theo tháng
+function filterSubscriptionsByMonth(month) {
+  if (month === 0) return allSubscriptions; // "Tất cả" trả về toàn bộ
+  return allSubscriptions.filter((sub) => {
+    const startDate = new Date(sub.startDate);
+    return startDate.getMonth() + 1 === month; // So sánh tháng
+  });
+}
+
+// Cập nhật biểu đồ
+function updateChart(filteredData) {
+  const monthlyTotals = Array(12).fill(0);
+
+  filteredData.forEach((sub) => {
+    const startDate = new Date(sub.startDate);
+    const month = startDate.getMonth();
+    monthlyTotals[month] += sub.price || 0; // Tổng tiền theo tháng
+  });
+
+  const ctx = document.getElementById("lineChart").getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ],
+      datasets: [
+        {
+          label: "Doanh thu (VND)",
+          data: monthlyTotals,
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
+// Xuất dữ liệu ra Excel
+function exportFilteredToExcel(month) {
+  const filteredData = filterSubscriptionsByMonth(month).map((sub) => ({
+    "ID Đăng ký": sub.subscriptionId,
+    "Tên người dùng": sub.username,
+    "Gói đăng ký": sub.plan,
+    "Giá (VND)": sub.price?.toLocaleString("vi-VN") || 0,
+    "Ngày bắt đầu": sub.startDate,
+    "Ngày kết thúc": sub.endDate,
+    "Trạng thái": sub.status,
+  }));
+
+  const worksheet = XLSX.utils.json_to_sheet(filteredData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Thống kê theo tháng");
+  XLSX.writeFile(workbook, "ThongKeTheoThang.xlsx");
+}
+
+// Tích hợp sự kiện
+$(document).ready(function () {
+  // Lấy dữ liệu ban đầu
+  $.ajax({
+    url: "https://localhost:7252/api/Subscriptions",
+    method: "GET",
+    success: function (subscriptions) {
+      allSubscriptions = subscriptions;
+      updateChart(allSubscriptions); // Hiển thị dữ liệu ban đầu
+    },
+    error: function (xhr, status, error) {
+      console.error("Lỗi khi tải dữ liệu:", error);
+    },
+  });
+
+  // Lọc theo tháng
+  $("#monthFilter").change(function () {
+    const selectedMonth = parseInt($(this).val());
+    const filteredData = filterSubscriptionsByMonth(selectedMonth);
+    updateChart(filteredData); // Cập nhật biểu đồ
+  });
+
+  // Xuất Excel theo tháng
+  $("#exportExcelBtn").click(function () {
+    const selectedMonth = parseInt($("#monthFilter").val());
+    exportFilteredToExcel(selectedMonth);
+  });
+});
+
+
+// Thêm nút để xuất file Excel
+document.getElementById("exportExcelBtn").addEventListener("click", function () {
+  loadSubscriptionsAndExport();
+});
+
+
+// Hàm tải dữ liệu từ API và tổng hợp doanh thu theo tháng
+function loadSalesOverview() {
+  $.ajax({
+    url: "https://localhost:7252/api/Subscriptions",
+    method: "GET",
+    success: function (subscriptions) {
+      // Tổng hợp doanh thu theo tháng
+      const monthlyRevenue = new Array(12).fill(0); // Khởi tạo mảng doanh thu theo tháng
+      subscriptions.forEach((sub) => {
+        const startDate = new Date(sub.startDate);
+        const month = startDate.getMonth(); // Lấy chỉ số tháng (0 = Jan, 11 = Dec)
+        monthlyRevenue[month] += sub.price || 0; // Cộng dồn giá trị price
+      });
+
+      // Vẽ biểu đồ với dữ liệu tổng hợp
+      createLineChart(monthlyRevenue);
+    },
+    error: function (xhr, status, error) {
+      console.error("Lỗi khi tải dữ liệu:", error);
+    },
+  });
+}
+
+// Gọi hàm khi trang được tải
+loadSalesOverview();
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    loadUsersRegisteredToday();
+    loadSumSubscription();
+    calculateTodaysMoney();
+
+    function loadUsersRegisteredToday() {
+      $.ajax({
+        url: 'https://localhost:7252/api/UserAdmin', // URL của API
+        method: 'GET',
+        success: function (data) {
+          const today = new Date().toLocaleDateString('en-GB'); 
+
+          const usersRegisteredToday = data.filter(user => user.created_At === today).length;
+
+          $("#total-users-count").text(usersRegisteredToday);
+        },
+        error: function (error) {
+          console.error("Error fetching user count:", error);
+          $("#total-users-count").text("Error loading count");
+        },
+      });
+    }
+
+
+    function loadSumSubscription() {
+    $.ajax({
+        url: 'https://localhost:7252/api/Subscriptions',
+        method: 'GET',
+        success: function (data) {
+            // Tính tổng số tiền
+            const totalPrice = data.reduce((sum, subscription) => {
+                return sum + (subscription.price || 0);
+            }, 0);
+
+            const formattedPrice = totalPrice.toLocaleString('vi-VN');
+            console.log('Tổng số tiền:', formattedPrice);
+
+            $('#totalPriceDisplay').text(`${formattedPrice}`);
+        },
+        error: function (xhr, status, error) {
+            console.error('Đã xảy ra lỗi khi lấy dữ liệu:', error);
+        }
+    });
+}
+  });
+
+  // Hàm chuyển đổi định dạng ngày từ "dd/mm/yyyy" sang "yyyy-mm-dd"
+function convertDate(dateString) {
+  const parts = dateString.split("/");
+  return new Date(parts[2], parts[1] - 1, parts[0]); // Tạo đối tượng Date
+}
+
+// Hàm tải thông tin hóa đơn từ API
+function loadInvoiceStatistics() {
+  $.ajax({
+    url: "https://localhost:7252/api/Subscriptions", // Đường dẫn API hóa đơn
+    method: "GET",
+    success: function (data) {
+      const totalInvoicesCount = data.length;
+    },
+    error: function (error) {
+      console.error("Lỗi khi tải thống kê hóa đơn:", error);
+      $("#total-invoices-count").text("Lỗi");
+    },
+  });
+}
+
+// Gọi hàm loadInvoiceStatistics khi trang HTML tải xong
+$(document).ready(function () {
+  loadInvoiceStatistics();
+});
+function calculateTodaysMoney() {
+  $.ajax({
+    url: "https://localhost:7252/api/Subscriptions", // API để lấy danh sách subscription
+    method: "GET",
+    success: function (data) {
+      console.log("Subscriptions data:", data); // Kiểm tra dữ liệu trả về
+
+      // Lấy ngày hiện tại (yyyy-MM-dd)
+      const today = new Date().toISOString().split("T")[0];
+      console.log("Today's date:", today);
+
+      // Lọc các subscription có startDate là ngày hiện tại
+      const todaysSubscriptions = data.filter(
+        (subscription) => subscription.startDate === today
+      );
+
+      // Tính tổng tiền từ các subscription
+      const totalMoney = todaysSubscriptions.reduce(
+        (sum, subscription) => sum + subscription.price,
+        0
+      );
+
+      console.log("Today's money:", totalMoney);
+
+      // Cập nhật giao diện
+// Chỉ cập nhật thẻ h3 có id là "todays-money"
+$("#todays-money").html(`₫${totalMoney.toLocaleString()}`);
+    },
+    error: function (error) {
+      console.error("API Error:", error); // Log lỗi nếu có
+      $(".statistics .stat-card h3").html("Lỗi");
+    },
+  });
+}
+
+</script>
+</html>

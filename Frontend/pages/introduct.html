@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../assets/img/dn5sao2.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="/Frontend/media/assets/css/5sa0.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
+
+    <title>langsch5sao</title>
+    <style>
+        .main-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h1 {
+            margin-top: 0;
+        }
+
+        .main-content h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .main-content p {
+            line-height: 1.6;
+        }
+
+        .main-content ul {
+            padding-left: 20px;
+        }
+
+        .main-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h1,
+        .main-content h2 {
+            color: #4CAF50;
+        }
+
+        .main-content h1 {
+            font-size: 2em;
+        }
+
+        .main-content h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .main-content p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .main-content section {
+            margin-bottom: 40px;
+        }
+
+        .main-content ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .main-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact_gt {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .contact_gt p {
+            margin: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="header" id="header">
+        <a href="https://dn5sao.edu.vn"> <img src="../assets/img/dn5sao2.png" alt="" class="logo"
+                style=" width: 100px; height: auto; "></a>
+
+        <nav class="nav container">
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="../index.html" class="nav__link active-link">Trang chủ</a>
+                    </li>
+                    <!--giới thiệu-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#GT" class="nav__link">Giới thiệu</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../introduce/CompanyIntroduction.html" class="nav__submenu-link">Về trung tâm
+                                    Star</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="dev.html" class="nav__submenu-link">Đội ngũ nhân viên</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--khóa học-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#about" class="nav__link">Khóa học</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/viduIELTS.html" class="nav__submenu-link">IELTS</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/viduPTE.html" class="nav__submenu-link">PTE</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--ngôn ngữ-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#discover" class="nav__link">Ngôn ngữ</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../noidung/tienganh.html" class="nav__submenu-link">Tiếng Anh</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../TiengDuc.html" class="nav__submenu-link">Tiếng Đức</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#korean" class="nav__submenu-link">Tiếng Hàn</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../TiengNhat.html" class="nav__submenu-link">Tiếng Nhật</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#korean" class="nav__submenu-link">Tiếng Trung Quốc</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--tin tức-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#tintuc" class="nav__link">Tin tức</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../news/tinnoibat.html" class="nav__submenu-link">Tin nổi bật</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="#english" class="nav__submenu-link">Sự kiện</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--thư viện-->
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#place" class="nav__link">Thư viện</a>
+                        <ul class="nav__submenu">
+                            <li class="nav__submenu-item">
+                                <a href="../index.html#place" class="nav__submenu-link">Hình ảnh</a>
+                            </li>
+                            <li class="nav__submenu-item">
+                                <a href="../index.html#video" class="nav__submenu-link">Video</a>
+                            </li>
+
+                            <li class="nav__submenu-item">
+                                <a href="../thuvien/tailieuthamkhao.html" class="nav__submenu-link">Tài liệu tham khảo</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav__item">
+                        <a href="../index.html#LH" class="nav__link">Liên hệ</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="nav__dark">
+                    <!-- Theme change button -->
+                    <span class="change-theme-name">Dark mode</span>
+                    <i class="ri-moon-line change-theme" id="theme-button"></i>
+                </div>
+
+                <i class="ri-close-line nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="tltk section" id="tltk">
+        <div class="container">
+            <h1 class="section__title">GIỚI THIỆU VỀ TRUNG TÂM ANH NGỮ STAR</h1>
+    </section>
+    <main class="main-content">
+
+        <p>Trung tâm Ngoại ngữ Star - Nơi Khơi Nguồn Tiềm Năng Ngôn Ngữ Của Bạn. Bạn đang tìm kiếm một nơi để nâng cao
+            kỹ năng ngoại ngữ của mình? Hãy đến với Trung tâm Ngoại ngữ Star - địa chỉ uy tín và chất lượng hàng đầu tại
+            Việt Nam.</p>
+
+        <section>
+            <h2 class="section__title">Sứ Mệnh Vươn Tầm Quốc Tế</h2>
+            <img src="../assets/img/sumenh.jpg" alt="" style="margin-left: 110px;">
+
+            <p>Trung tâm Ngoại ngữ Star ra đời với sứ mệnh trở thành điểm đến tin cậy cho những ai muốn chinh phục các
+                ngôn ngữ quốc tế. Chúng tôi tự hào là nơi đào tạo và cung cấp các khóa học ngoại ngữ chất lượng cao,
+                giúp học viên phát triển toàn diện về nghe, nói, đọc, viết.</p>
+        </section>
+
+        <section>
+            <h2 class="section__title">Đội Ngũ Giảng Viên Trung Tâm</h2>
+            <p>Đội ngũ giảng viên tại Trung tâm Ngoại ngữ Star là những người có trình độ chuyên môn cao, giàu kinh
+                nghiệm giảng dạy. Họ không chỉ thông thạo các ngôn ngữ mà còn được đào tạo kỹ về phương pháp giảng dạy
+                hiện đại, luôn tận tâm và nhiệt huyết với sự phát triển của học viên.</p>
+
+        </section>
+
+        <section>
+            <h2 class="section__title">Chương Trình Đa Dạng, Phù Hợp Mọi Đối Tượng</h2>
+            <p>Trung tâm Ngoại ngữ Star cung cấp các khóa học ngoại ngữ đa dạng, từ tiếng Anh, tiếng Nhật, tiếng Hàn đến
+                tiếng Trung, tiếng Pháp... Chúng tôi thiết kế các chương trình phù hợp với từng đối tượng, từ trẻ em,
+                học sinh, sinh viên đến người đi làm, giúp mọi người đều có cơ hội nâng cao trình độ ngoại ngữ.</p>
+        </section>
+
+        <section>
+            <h2 class="section__title">Cơ Sở Vật Chất Hiện Đại, Môi Trường Học Tập Thoải Mái</h2>
+            <p>Tại Trung tâm Ngoại ngữ Star, học viên sẽ được học tập trong không gian hiện đại, tiện nghi với các phòng
+                học rộng rãi, thoáng mát, trang bị đầy đủ các thiết bị hỗ trợ học tập như máy chiếu, loa, bảng thông
+                minh... Đây là môi trường lý tưởng để các bạn thoải mái và tập trung vào việc học.</p>
+        </section>
+
+        <p class="contact_gt">Hãy đến với Trung tâm Ngoại ngữ Star - nơi khơi nguồn tiềm năng ngôn ngữ của bạn. Chúng
+            tôi cam kết mang đến cho bạn những trải nghiệm học tập đáng nhớ và giúp bạn vươn tới những thành công mới.
+        </p>
+
+        <section>
+            <h2 class="section__title">Liên Hệ Với Chúng Tôi</h2>
+            <p>Hãy đến với Trung tâm Ngoại ngữ Star để khám phá và trau dồi năng lực ngôn ngữ của bạn một cách chuyên
+                nghiệp và hiệu quả nhất. Đội ngũ chúng tôi luôn sẵn sàng chào đón và hỗ trợ bạn trong mọi quá trình học
+                tập. Đừng ngần ngại liên hệ với chúng tôi ngay hôm nay để biết thêm thông tin chi tiết về các khóa học
+                và các dịch vụ của chúng tôi.</p>
+            <p>Trung tâm Ngoại ngữ Star - Nơi hình thành và phát triển năng lực ngôn ngữ của bạn!</p>
+        </section>
+    </main>
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content grid">
+                <div class="footer__data">
+                    <h3 class="footer__title">Trung tâm anh ngữ Star</h3>
+                    <p class="footer__description">Hostline: 0938 762 783<br> Email: info@dn5sao.edu.vn<br>
+                    </p>
+                    <div>
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Địa chỉ của chúng tôi</h3>
+                    <p>85 Nguyễn Văn Nghi, Phường 7, Quận Gò Vấp, TP.HCM</p>
+                    <div class="map-responsive">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3815125782735!2d106.6787431!3d10.8260782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528fc64e522fb%3A0xdc415619b7791a50!2zODUgTmd1eeG7hW4gVsSDbiBOZ2hpLCBQaMaw4budbmcgNywgR8O0IFbhuq1wLCBUaMOgbmggcGjhuqduIFRQLiBIw7JhIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1620312725826!5m2!1svi!2s"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__rights">
+                <p class="footer__copy">&#169; 2021 Bedimcode. All rights reserved.</p>
+                <div class="footer__terms">
+                    <a href="#" class="footer__terms-link">Terms & Agreements</a>
+                    <a href="#" class="footer__terms-link">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line scrollup__icon"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL===============-->
+    <script src="../assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="../assets/js/main.js"></script>
+
+
+
+
+    <!--icon message-->
+    <div class="message-container">
+
+        <a onclick="showPhoneNumber()">
+            <img class="phone-img" src="../assets/img/phone.png" alt="Hình ảnh điện thoại">
+        </a>
+        <p id="phone-number" style="display: none;">Số điện thoại: 0981113181</p>
+
+        <br>
+        <a href="https://zalo.me/098.111.3181">
+            <img class="zalo-img" src="../assets/img/zalo.png" alt="Hình ảnh zalo">
+        </a>
+        <br>
+        <a href="https://www.facebook.com/messages/t/307104349160609">
+            <img class="message-img" src="../assets/img/messenger.png" alt="Hình ảnh tin nhắn">
+        </a>
+    </div>
+    <!--icon điện thoại-->
+    <script>
+        function showPhoneNumber() {
+            var phoneNumber = document.getElementById("phone-number");
+            if (phoneNumber.style.display === "none") {
+                phoneNumber.style.display = "block";
+            } else {
+                phoneNumber.style.display = "none";
+            }
+        }
+    </script>
+    <!-- messager vs facebook-->
+    <script>
+        window.addEventListener('scroll', function () {
+            var messageContainer = document.querySelector('.message-container');
+            var scrollPos = window.scrollY;
+
+            if (scrollPos > 100) { // Thay đổi giá trị 100 thành vị trí cuộn mong muốn
+                messageContainer.classList.add('show');
+            } else {
+                messageContainer.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

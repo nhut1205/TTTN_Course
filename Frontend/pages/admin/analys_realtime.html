@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách doanh thu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7fc;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .time-filters {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        padding: 15px;
+        font-size: 18px;
+        width: 250px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+      }
+
+      .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #888;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Danh sách doanh thu theo thời gian thực</h1>
+
+      <!-- Bộ lọc thời gian -->
+      <div class="time-filters">
+        <label for="start-date">Ngày bắt đầu:</label>
+        <input type="text" id="start-date" placeholder="yyyy/mm/dd" />
+
+        <label for="end-date">Ngày kết thúc:</label>
+        <input type="text" id="end-date" placeholder="yyyy/mm/dd" />
+
+        <button id="generate-report">Hiển thị danh sách</button>
+        <button id="export-excel">Xuất Excel</button>
+      </div>
+
+      <!-- Bảng hiển thị dữ liệu -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Người dùng</th>
+            <th>Gói</th>
+            <th>Giá (VND)</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="subscriptions-table">
+          <!-- Dữ liệu sẽ được thêm động tại đây -->
+          <tr class="no-data">
+            <td colspan="7">Không có dữ liệu.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      // Khởi tạo Flatpickr cho các trường nhập ngày
+      flatpickr("#start-date", {
+        dateFormat: "Y/m/d", // Định dạng dd/mm/yyyy
+      });
+      flatpickr("#end-date", {
+        dateFormat: "Y/m/d", // Định dạng dd/mm/yyyy
+      });
+
+      // Gọi sự kiện khi nhấn nút "Hiển thị danh sách"
+      document
+        .getElementById("generate-report")
+        .addEventListener("click", async () => {
+          const startDate = document.getElementById("start-date").value;
+          const endDate = document.getElementById("end-date").value;
+
+          // Kiểm tra giá trị nhập
+          if (!startDate || !endDate) {
+            alert("Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.");
+            return;
+          }
+
+          if (new Date(startDate) > new Date(endDate)) {
+            alert("Ngày bắt đầu không được lớn hơn ngày kết thúc.");
+            return;
+          }
+
+          try {
+            // Gửi yêu cầu GET đến API
+            const response = await fetch(
+              `https://localhost:7252/api/Subscriptions/by_date_range?startDate=${startDate}&endDate=${endDate}`
+            );
+
+            if (!response.ok) {
+              throw new Error(`Lỗi khi lấy dữ liệu: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            renderSubscriptions(data);
+          } catch (error) {
+            console.error("Lỗi:", error);
+            alert("Đã xảy ra lỗi khi lấy dữ liệu.");
+          }
+        });
+
+      // Hàm hiển thị dữ liệu trong bảng
+      function renderSubscriptions(data) {
+        const tableBody = document.getElementById("subscriptions-table");
+        tableBody.innerHTML = ""; // Xóa dữ liệu cũ
+
+        if (data.length === 0) {
+          tableBody.innerHTML = ` 
+          <tr class="no-data">
+            <td colspan="7">Không có dữ liệu.</td>
+          </tr>
+        `;
+          return;
+        }
+
+        data.forEach((item) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${item.subscriptionId}</td>
+          <td>${item.username}</td>
+          <td>${item.plan}</td>
+          <td>${
+            item.price
+              ? item.price.toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                })
+              : "0"
+          }</td>
+          <td>${item.start_Date}</td>
+          <td>${item.end_Date}</td>
+          <td>${item.status}</td>
+        `;
+          tableBody.appendChild(row);
+        });
+      }
+      ////////////////////////////////////////////////////////////////////////////
+      // Xử lý sự kiện khi nhấn nút "Xuất Excel"
+      document
+        .getElementById("export-excel")
+        .addEventListener("click", async () => {
+          const startDate = document.getElementById("start-date").value;
+          const endDate = document.getElementById("end-date").value;
+
+          // Kiểm tra giá trị nhập
+          if (!startDate || !endDate) {
+            alert("Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.");
+            return;
+          }
+
+          if (new Date(startDate) > new Date(endDate)) {
+            alert("Ngày bắt đầu không được lớn hơn ngày kết thúc.");
+            return;
+          }
+
+          try {
+            // Gửi yêu cầu GET đến API để lấy dữ liệu
+            const response = await fetch(
+              `https://localhost:7252/api/Subscriptions/by_date_range?startDate=${startDate}&endDate=${endDate}`
+            );
+
+            if (!response.ok) {
+              throw new Error(`Lỗi khi lấy dữ liệu: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            exportToExcel(data);
+          } catch (error) {
+            console.error("Lỗi:", error);
+            alert("Đã xảy ra lỗi khi lấy dữ liệu.");
+          }
+        });
+
+      // Hàm xuất dữ liệu ra Excel
+      function exportToExcel(data) {
+        // Kiểm tra nếu không có dữ liệu
+        if (data.length === 0) {
+          alert("Không có dữ liệu để xuất.");
+          return;
+        }
+
+        // Định dạng dữ liệu cho bảng Excel
+        const formattedData = data.map((item) => ({
+          ID: item.subscriptionId,
+          "Người dùng": item.username,
+          Gói: item.plan,
+          "Giá (VND)": item.price
+            ? item.price.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })
+            : "0",
+          "Ngày bắt đầu": item.start_Date,
+          "Ngày kết thúc": item.end_Date,
+          "Trạng thái": item.status,
+        }));
+
+        // Tạo sheet từ dữ liệu
+        const ws = XLSX.utils.json_to_sheet(formattedData);
+
+        // Thiết lập các tùy chọn định dạng cho tiêu đề
+        const titleStyle = {
+          font: { bold: true, color: { rgb: "FFFFFF" } }, // Chữ đậm, màu trắng
+          fill: { fgColor: { rgb: "1F4E79" } }, // Nền xanh dương
+          alignment: { horizontal: "center", vertical: "center" }, // Canh giữa
+          border: {
+            top: { style: "thin", color: { rgb: "040404" } },
+            left: { style: "thin", color: { rgb: "040404" } },
+            bottom: { style: "thin", color: { rgb: "040404" } },
+            right: { style: "thin", color: { rgb: "040404" } },
+          },
+        };
+
+        // Áp dụng style cho các ô tiêu đề (cột đầu tiên là tiêu đề)
+        const headerCols = ["A", "B", "C", "D", "E", "F", "G"];
+        headerCols.forEach((col, index) => {
+          const cell = ws[`${col}1`];
+          if (cell) {
+            cell.s = titleStyle;
+          }
+        });
+
+        // Thêm viền cho tất cả các ô trong sheet (bao gồm cả dữ liệu và tiêu đề)
+        const borderStyle = {
+          top: { style: "thick", color: { rgb: "040404" } },
+          left: { style: "thick", color: { rgb: "040404" } },
+          bottom: { style: "thick", color: { rgb: "040404" } },
+          right: { style: "thick", color: { rgb: "040404" } },
+        };
+
+        // Duyệt qua tất cả các ô trong sheet và thêm viền
+        Object.keys(ws).forEach((cell) => {
+          if (cell[0] !== "!") {
+            // Bỏ qua các thuộc tính đặc biệt
+            const currentCell = ws[cell];
+            if (currentCell) {
+              currentCell.s = currentCell.s || {}; // Nếu không có style, tạo mới
+              currentCell.s.border = currentCell.s.border || {}; // Thêm viền nếu chưa có
+              currentCell.s.border = {
+                ...currentCell.s.border,
+                ...borderStyle,
+              }; // Thêm viền cho ô
+            }
+          }
+        });
+
+        // Tự động điều chỉnh kích thước cột
+        const colWidths = Object.keys(ws).reduce((acc, cell) => {
+          if (cell[0] === "!") return acc; // Bỏ qua các thuộc tính đặc biệt
+          const col = cell[0];
+          const val = ws[cell].v ? ws[cell].v.toString() : "";
+          const length = val.length;
+          if (!acc[col] || length > acc[col]) {
+            acc[col] = length;
+          }
+          return acc;
+        }, {});
+
+        // Cập nhật chiều rộng các cột dựa trên độ dài nội dung
+        ws["!cols"] = Object.keys(colWidths).map((col) => ({
+          width: colWidths[col] + 2, // Tăng kích thước một chút
+        }));
+
+        // Tạo workbook và thêm sheet vào đó
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Danh sách đăng ký");
+
+        // Xuất file Excel
+        XLSX.writeFile(wb, "Danh_sach_dang_ky.xlsx");
+      }
+    </script>
+  </body>
+</html>

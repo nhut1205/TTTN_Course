@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
+
+    <link rel="stylesheet" href="../media/assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js"
+    ></script>
+    <script>
+      // Khởi tạo Facebook SDK
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "2830624303792310",
+          cookie: true,
+          xfbml: true,
+          version: "v15.0", // Chọn phiên bản Facebook API
+        });
+      };
+
+      // Đăng ký sự kiện cho form đăng nhập
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("loginForm")
+          .addEventListener("submit", async function (event) {
+            event.preventDefault(); // Ngăn chặn việc reload trang
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const data = {
+              username: username,
+              password: password,
+            };
+
+            try {
+              const response = await fetch(
+                "https://localhost:7252/api/Auth/login", // Thay đổi địa chỉ API nếu cần
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "*/*",
+                  },
+                  body: JSON.stringify(data),
+                }
+              );
+
+              if (response.ok) {
+                const result = await response.json();
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("username", username);
+                alert("Login successful");
+                // Chuyển hướng đến trang thông tin người dùng
+                window.location.href = "course_page.html";
+              } else {
+                const errorData = await response.json();
+                alert("Login failed: " + errorData.message);
+              }
+            } catch (error) {
+              console.error("Error:", error);
+              alert("An error occurred while logging in.");
+            }
+          });
+
+        // Đăng nhập với Facebook
+        document
+          .getElementById("facebookLogin")
+          .addEventListener("click", async function () {
+            try {
+              const facebookToken = await getFacebookToken(); // Lấy token từ Facebook
+
+              // Lấy thông tin người dùng từ Facebook
+              FB.api("/me", { fields: "name" }, async function (response) {
+                if (response && !response.error) {
+                  const data = {
+                    token: facebookToken, // Gửi token này lên server
+                    username: response.name, // Lưu tên người dùng từ Facebook
+                  };
+
+                  const apiResponse = await fetch(
+                    "https://localhost:7252/api/Auth/loginFacebook", // Địa chỉ API cho Facebook Login
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Accept: "*/*",
+                      },
+                      body: JSON.stringify(data),
+                    }
+                  );
+
+                  if (apiResponse.ok) {
+                    const result = await apiResponse.json();
+                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("username", data.username); // Lưu username
+                    alert("Login with Facebook successful");
+                    window.location.href = "course_page.html";
+                  } else {
+                    const errorData = await apiResponse.json();
+                    alert("Login failed: " + errorData.message);
+                    console.error("Error details:", errorData);
+                  }
+                } else {
+                  alert("Failed to get user information from Facebook.");
+                }
+              });
+            } catch (error) {
+              console.error("Error:", error);
+              alert("An error occurred while logging in with Facebook.");
+            }
+          });
+
+        async function getFacebookToken() {
+          return new Promise((resolve, reject) => {
+            FB.login(
+              (response) => {
+                if (response.authResponse) {
+                  // Lấy token từ phản hồi
+                  resolve(response.authResponse.accessToken);
+                } else {
+                  reject("User cancelled login or did not fully authorize.");
+                }
+              },
+              { scope: "email" } // Yêu cầu quyền truy cập email
+            );
+          });
+        }
+      });
+    </script>
+  </head>
+  <body class="background_black">
+    <div class="container">
+      <div class="left_Login">
+        <div class="form_container">
+          <h2>CHÀO MỪNG TRỞ LẠI!</h2>
+          <p>Nhập thông tin của bạn để tiếp tục.</p>
+
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                id="username"
+                class="form-control"
+                type="text"
+                placeholder="Nhập username"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Mật khẩu</label>
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                placeholder="Nhập mật khẩu"
+                required
+              />
+            </div>
+
+            <!-- Remember & forgot password -->
+            <div class="form_options">
+              <label for="checkbox3" class="remember_me">
+                <input
+                  type="checkbox"
+                  id="checkbox3"
+                  class="form-check-input"
+                  name="remember"
+                />
+                <span style="color: white" style="font-size: 14px"
+                  >Ghi nhớ mật khẩu</span
+                >
+              </label>
+              <a
+                href="/TTTN_Course/Frontend/pages/forgerPass.html"
+                class="forgot_password"
+                style="font-size: 14px"
+                >Quên mật khẩu</a
+              >
+            </div>
+
+            <!-- Sign in buttons -->
+            <button type="submit" class="button_Login">Đăng nhập</button>
+          </form>
+
+          <p class="signup_link" style="color: white">
+            <span>Chưa có tài khoản? </span>
+            <a href="Register.html" class="signup_free">Đăng ký ngay</a>
+          </p>
+
+          <!-- Nút đăng nhập với Facebook -->
+          <button
+            id="facebookLogin"
+            class="button_Login_GG"
+            style="margin-top: 10px; background-color: #0866ff"
+          >
+            Đăng nhập bằng Facebook
+          </button>
+        </div>
+      </div>
+
+      <div class="right_Login"></div>
+    </div>
+
+    <!-- ==================== SCRIPT ==================== -->
+    <script>
+      function checkLogin() {
+        const username = localStorage.getItem("username");
+        if (username) {
+          window.location.href = "/Frontend/pages/course_page.html";
+        }
+      }
+      window.onload = checkLogin();
+    </script>
+  </body>
+</html>
