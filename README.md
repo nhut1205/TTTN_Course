@@ -1,6 +1,6 @@
 # Hướng dẫn Setup Dự án Web Khóa Học Võ Thuật
 Các bước set up
-## Clone dự án về máy
+## Clone dự án về máy chạy backend để khởi tạo api
 
 Vào thư mục Backend -> SellCourse -> Double click vào SellCourse.sln để mở dự án
 
@@ -15,6 +15,11 @@ Mở Tool:
 1. Vào file appsettings.json và SellCourseContext trong thư mục Models.
 2. Đổi tên server, tài khoản, và mật khẩu (sa) đúng với máy bạn.
 3. Sau đó chạy lại lệnh trên.
+
+## Chạy giao diện
+1. Mở VSC hoặc bất kì phần mềm nào có tích hợp chạy html và css
+2. Add file front end dự án vào
+3. chạy live server như ứng dụng web bình thường.
 ## Nếu cần tạo hoặc sửa bảng trong CSDL và cập nhật lại Models:
 Chạy lệnh sau:
 1. Scaffold-DbContext "Server=localhost;Database=OnlyFilm;User=Sa;Password=sa;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables est1
